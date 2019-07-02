@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import SubscriberRow from "./SubscriberRow";
 
 export default class SubscriberIndex extends Component {
@@ -27,6 +28,9 @@ export default class SubscriberIndex extends Component {
     return (
       <div>
         <h3 align="center">Subscribers</h3>
+        <Link to={"/subscribers/create"} className="btn btn-primary">
+            Create
+        </Link>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
