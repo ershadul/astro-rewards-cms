@@ -21,6 +21,7 @@ class RewardRow extends Component {
         <td>{this.props.obj._id}</td>
         <td>{this.props.obj.redemptionPeriodStart}</td>
         <td>{this.props.obj.redemptionPeriodEnd}</td>
+        <td><img src={this.props.obj.thumbnail} alt={this.props.obj.title} style={{width: 100, heigth: 100}} /></td>
         <td>
           <Link to={"/rewards/edit/" + this.props.obj._id} className="btn btn-primary">
             Edit

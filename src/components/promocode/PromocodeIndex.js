@@ -1,42 +1,38 @@
 import React, { Component } from "react";
 import axios from "axios";
-import RewardRow from "./RewardRow";
+import PromocodeRow from "./PromocodeRow";
 
-export default class RewardIndex extends Component {
+export default class PromocodeIndex extends Component {
   constructor(props) {
     super(props);
-    this.state = { rewards: [] };
+    this.state = { promocodes: [] };
   }
   componentDidMount() {
     axios
-      .get("http://localhost:3000/v1/rewards")
+      .get("http://localhost:3000/v1/promocodes")
       .then(response => {
-        this.setState({ rewards: response.data });
+        this.setState({ promocodes: response.data });
       })
       .catch(function(error) {
         console.log(error);
       });
   }
   tabRow() {
-    return this.state.rewards.map(function(object, i) {
-      return <RewardRow obj={object} key={i} />;
+    return this.state.promocodes.map(function(object, i) {
+      return <PromocodeRow obj={object} key={i} />;
     });
   }
 
   render() {
     return (
       <div>
-        <h3 align="center">Rewards</h3>
+        <h3 align="center">Promocodes</h3>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Company</th>
+              <th>Subscriber ID</th>
+              <th>code</th>
               <th>ID</th>
-              <th>Promo Start</th>
-              <th>Promo End</th>
-              <th>Image</th>
-              <th colSpan="2">Action</th>
             </tr>
           </thead>
           <tbody>{this.tabRow()}</tbody>

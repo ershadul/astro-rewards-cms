@@ -17,7 +17,7 @@ class CompanyRow extends Component {
     return (
       <tr>
         <td>{this.props.obj.name}</td>
-        <td><img src={this.props.obj.logo} width="75px" height="75px" /></td>
+        <td><img src={this.props.obj.logo} alt={this.props.obj.name} width="75px" height="75px" /></td>
         <td>{this.props.obj._id}</td>
         <td>
           <Link to={"/companies/edit/" + this.props.obj._id} className="btn btn-primary">
