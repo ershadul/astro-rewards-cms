@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import CompanyRow from "./CompanyRow";
+import { Link } from "react-router-dom";
 
 export default class CompanyIndex extends Component {
   constructor(props) {
@@ -27,6 +28,9 @@ export default class CompanyIndex extends Component {
     return (
       <div>
         <h3 align="center">Companies</h3>
+        <Link to={"/companies/create"} className="btn btn-primary">
+            Create
+        </Link>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
