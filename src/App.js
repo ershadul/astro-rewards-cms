@@ -7,6 +7,7 @@ import CompanyIndex from "./components/company/CompanyIndex";
 import CompanyCreate from "./components/company/CompanyCreate";
 import CompanyEdit from "./components/company/CompanyEdit";
 import RewardIndex from "./components/reward/RewardIndex";
+import RewardCreate from "./components/reward/RewardCreate";
 import SubscriberIndex from "./components/subscriber/SubscriberIndex";
 import SubscriberCreate from "./components/subscriber/SubscriberCreate";
 
@@ -43,6 +44,8 @@ function App() {
           <Route path="/companies/create" component={CompanyCreate} />
 
           <Route exact path="/rewards" component={RewardIndex} />
+          <Route exact path="/rewards/create" component={RewardCreate} />
+          
           <Route exact path="/subscribers" component={SubscriberIndex} />
           <Route exact path="/subscribers/create" component={SubscriberCreate} />
         </Switch>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import RewardRow from "./RewardRow";
+import { Link } from "react-router-dom";
 
 export default class RewardIndex extends Component {
   constructor(props) {
@@ -27,6 +28,9 @@ export default class RewardIndex extends Component {
     return (
       <div>
         <h3 align="center">Rewards</h3>
+        <Link to={"/rewards/create"} className="btn btn-primary">
+            Create
+        </Link>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
