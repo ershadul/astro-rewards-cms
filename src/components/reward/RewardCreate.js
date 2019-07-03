@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 // import DateTimePicker from 'react-datetime-picker';
-
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 export default class RewardCreate extends Component {
   constructor(props) {
@@ -23,7 +26,7 @@ export default class RewardCreate extends Component {
       company: '',
       title: '',
       subTitle: '',
-      description: '',
+      description: EditorState.createEmpty(),
       thumbnail: '',
       startDatetime: this.formatDate(new Date()),
       endDatetime: this.formatDate(new Date(today.setDate(today.getDate() + 30))),
@@ -71,9 +74,9 @@ export default class RewardCreate extends Component {
     });
   }
 
-  onChangeDescription(e) {
+  onChangeDescription(editorState) {
     this.setState({
-      description: e.target.value
+      description: editorState
     });
   }
 
@@ -114,12 +117,11 @@ export default class RewardCreate extends Component {
     data.append('thumbnail', this.state.thumbnail);
     data.append('title', this.state.title);
     data.append('subTitle', this.state.subTitle);
-    data.append('description', this.state.description);
+    data.append('description', draftToHtml(convertToRaw(this.state.description.getCurrentContent())));
     data.append('locationUrl', this.state.locationUrl);
     data.append('redemptionType', this.state.redemptionType);
     data.append('redemptionPeriodStart', this.state.startDatetime);
     data.append('redemptionPeriodEnd', this.state.endDatetime);
-    // data.append('company', this.state.subTitle);
     axios
       .post("http://localhost:3000/v1/rewards",
         data,
@@ -161,13 +163,14 @@ export default class RewardCreate extends Component {
               onChange={this.onChangeSubTitle}
             />
           </div>
-          <div className="form-group">
+          <div>
             <label>Description: *</label>
-            <input
-              type="text"
-              className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
+            <Editor
+              editorState={this.state.description}
+              wrapperClassName="wrapper-class"
+              editorClassName="editor-class"
+              toolbarClassName="toolbar-class"
+              onEditorStateChange={this.onChangeDescription}
             />
           </div>
           <div className="form-group">
