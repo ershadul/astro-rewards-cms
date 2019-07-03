@@ -10,7 +10,7 @@ export default class SubscriberIndex extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:3000/v1/subscribers")
+      .get("/subscribers")
       .then(response => {
         this.setState({ subscribers: response.data });
       })

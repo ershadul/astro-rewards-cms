@@ -9,7 +9,7 @@ class RewardRow extends Component {
   }
   delete() {
     axios
-      .get("http://localhost:3000/v1/rewards/" + this.props.obj._id)
+      .get("/rewards/" + this.props.obj._id)
       .then(console.log("Deleted"))
       .catch(err => console.log(err));
   }

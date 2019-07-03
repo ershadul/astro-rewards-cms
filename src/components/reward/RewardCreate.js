@@ -126,7 +126,7 @@ export default class RewardCreate extends Component {
 
     this.setState({submitting: true});
     axios
-      .post("http://localhost:3000/v1/rewards",
+      .post("/rewards",
         data,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then(res => {

@@ -40,7 +40,7 @@ export default class SubscriberCreate extends Component {
     if (this.state.accountNumber.length !== 10 && this.state.accountNumber.length !== 12) {return;}
     console.log(this.state);
     axios
-      .post("http://localhost:3000/v1/subscribers",
+      .post("/subscribers",
         { idType: this.state.idType, idNumber: this.state.idNumber, accountNumber: this.state.accountNumber }
       ).then(res => {
         console.log(res.data);

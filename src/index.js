@@ -6,7 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import axios from "axios";
 
-axios.defaults.headers.common['tenant'] = '5d19a7831fb4de5748ccd2bd'; //process.env.REACT_APP_TENANT_ID
+axios.defaults.headers.common['tenant'] = process.env.REACT_APP_TENANT_ID;
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 
 ReactDOM.render(
     <BrowserRouter>

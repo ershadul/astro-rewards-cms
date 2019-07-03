@@ -17,7 +17,7 @@ export default class CompanyEdit extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3000/v1/companies/" + this.props.match.params.id)
+      .get("/companies/" + this.props.match.params.id)
       .then(response => {
         this.setState({
           name: response.data.name,

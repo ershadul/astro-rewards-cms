@@ -44,7 +44,7 @@ export default class CompanyCreate extends Component {
     data.append('website', this.state.website);
     this.setState({ submitting: true });
     axios
-      .post("http://localhost:3000/v1/companies",
+      .post("/companies",
         data,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then(res => {

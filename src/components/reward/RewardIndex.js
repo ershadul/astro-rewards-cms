@@ -10,7 +10,7 @@ export default class RewardIndex extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:3000/v1/rewards")
+      .get("/rewards")
       .then(response => {
         this.setState({ rewards: response.data });
       })
