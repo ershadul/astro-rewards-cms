@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import DateTimePicker from 'react-datetime-picker';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { ClipLoader } from 'react-spinners';
 
 export default class RewardCreate extends Component {
   constructor(props) {
@@ -32,6 +32,7 @@ export default class RewardCreate extends Component {
       endDatetime: this.formatDate(new Date(today.setDate(today.getDate() + 30))),
       redemptionType: 'online',
       locationUrl: '',
+      submitting: false,
     };
   }
 
@@ -122,13 +123,18 @@ export default class RewardCreate extends Component {
     data.append('redemptionType', this.state.redemptionType);
     data.append('redemptionPeriodStart', this.state.startDatetime);
     data.append('redemptionPeriodEnd', this.state.endDatetime);
+
+    this.setState({submitting: true});
     axios
       .post("http://localhost:3000/v1/rewards",
         data,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then(res => {
         console.log(res.data);
+        this.setState({submitting: false});
         this.props.history.push("/rewards");
+      }).catch(err => {
+        this.setState({submitting: false});
       });
   }
 
@@ -225,6 +231,15 @@ export default class RewardCreate extends Component {
               type="submit"
               value="Create Reward"
               className="btn btn-primary"
+              disabled={this.state.submitting}
+            />
+            
+            <ClipLoader
+              style={{display: 'block', margin: '10px 0 0 20px'}}
+              sizeUnit={"px"}
+              size={40}
+              color={'#123abc'}
+              loading={this.state.submitting}
             />
           </div>
         </form>

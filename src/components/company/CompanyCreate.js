@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { ClipLoader } from 'react-spinners';
 
 export default class CompanyCreate extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class CompanyCreate extends Component {
       name: '',
       logo: '',
       website: '',
+      submitting: false,
     };
   }
 
@@ -40,13 +42,17 @@ export default class CompanyCreate extends Component {
     data.append('logo', this.state.logo);
     data.append('name', this.state.name);
     data.append('website', this.state.website);
+    this.setState({ submitting: true });
     axios
       .post("http://localhost:3000/v1/companies",
         data,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       ).then(res => {
         console.log(res.data);
+        this.setState({ submitting: false });
         this.props.history.push("/companies");
+      }).catch(err => {
+        this.setState({ submitting: false });
       });
   }
 
@@ -86,7 +92,17 @@ export default class CompanyCreate extends Component {
               type="submit"
               value="Create Companay"
               className="btn btn-primary"
+              disabled={this.state.submitting}
             />
+
+            <ClipLoader
+              style={{display: 'block', margin: '10px 0 0 20px'}}
+              sizeUnit={"px"}
+              size={40}
+              color={'#123abc'}
+              loading={this.state.submitting}
+            />
+
           </div>
         </form>
       </div>

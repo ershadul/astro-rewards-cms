@@ -24,11 +24,11 @@ class CompanyRow extends Component {
             Edit
           </Link>
         </td>
-        <td>
+        {/* <td>
           <button onClick={this.delete} className="btn btn-danger">
             Delete
           </button>
-        </td>
+        </td> */}
       </tr>
     );
   }

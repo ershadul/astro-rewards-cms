@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 
 class RewardRow extends Component {
@@ -22,7 +22,7 @@ class RewardRow extends Component {
         <td>{this.props.obj.redemptionPeriodStart}</td>
         <td>{this.props.obj.redemptionPeriodEnd}</td>
         <td><img src={this.props.obj.thumbnail} alt={this.props.obj.title} style={{width: 100, heigth: 100}} /></td>
-        <td>
+        {/* <td>
           <Link to={"/rewards/edit/" + this.props.obj._id} className="btn btn-primary">
             Edit
           </Link>
@@ -31,7 +31,7 @@ class RewardRow extends Component {
           <button onClick={this.delete} className="btn btn-danger">
             Delete
           </button>
-        </td>
+        </td> */}
       </tr>
     );
   }
