@@ -46,7 +46,7 @@ export default class CompanyEdit extends Component {
     e.preventDefault();
     axios
       .put(
-        "http://localhost:3000/v1/companies/" + this.props.match.params.id,
+        "/companies/" + this.props.match.params.id,
         { name: this.state.name, website: this.state.website }
       )
       .then(res => console.log(res.data));
