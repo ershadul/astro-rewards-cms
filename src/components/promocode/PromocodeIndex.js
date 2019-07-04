@@ -9,7 +9,7 @@ export default class PromocodeIndex extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:3000/v1/promocodes")
+      .get("/promocodes")
       .then(response => {
         this.setState({ promocodes: response.data });
       })

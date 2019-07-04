@@ -38,7 +38,7 @@ export default class RewardCreate extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3000/v1/companies")
+      .get("/companies")
       .then(response => {
         this.setState({ companies: response.data });
       })
